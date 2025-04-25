@@ -1,4 +1,5 @@
 const pool = require("../config/db");
+const { generateToken } = require("../middlewares/auth");
 
 async function registration(req, res) {
   const { email, password } = req.body;
@@ -36,12 +37,11 @@ async function login(req, res) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    const token = await generateToken({ id : user.id, email: user.email})
+
     res.status(200).json({
       message: "Login successful",
-      user: {
-        id: user.id,
-        email: user.email,
-      },
+      token: token,
     });
   } catch (error) {
     console.error("Login error:", error);
