@@ -1,6 +1,8 @@
 const pool = require("../config/db");
 const { generateToken } = require("../middlewares/auth");
 
+console.log('🚀 Сервер стартует! Этот файл точно запущен!');
+
 async function registration(req, res) {
   const { email, password, name } = req.body;
 
