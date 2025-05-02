@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('./config/db');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const cors = require("cors");
 
 const authorization = require("./routes/authorization");
